@@ -24,7 +24,7 @@
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         // 6000 (6초)
         $rollingTime = isset($result['banner_rolling_times']) ? (int)$result['banner_rolling_times'] * 1000 : 5000; // ms로 변환
-        echo "ss";
+        echo "sssdaasdasd";
         // swiper div에 data-rolling=<?=$rollingTime.. 이거넣고 js에서 상수 등록 후 autoplay delay에 해당 값을 넣으세요.
     ?>
 
