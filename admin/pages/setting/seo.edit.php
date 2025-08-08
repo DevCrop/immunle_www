@@ -13,7 +13,7 @@ try {
     $db = DB::getInstance(); 
 
     // 지점 목록
-    $stmt = $db->query("SELECT * FROM nb_branches ORDER BY id ASC");
+    $stmt = $db->query("SELECT * FROM nb_branches WHERE id IN (1, 2, 3, 4) ORDER BY id ASC");
     $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // SEO 정보

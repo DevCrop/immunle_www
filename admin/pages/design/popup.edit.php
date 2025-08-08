@@ -75,7 +75,6 @@ include_once "../../inc/admin.js.php";
                                     <h3 class="no-admin-title"><label for="branch_id">지점</label></h3>
                                     <div class="no-admin-content">
                                         <select name="branch_id" id="branch_id">
-                                            <option value="">공통</option>
                                             <?php foreach ($branches as $branch): ?>
                                             <option value="<?= $branch['id'] ?>"
                                                 <?= $popup['branch_id'] == $branch['id'] ? 'selected' : '' ?>>

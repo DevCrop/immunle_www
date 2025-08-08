@@ -136,27 +136,28 @@ export class SeoController {
   }
 
   extractPaths(pages, baseDir, result, parentTitles = []) {
+    const joinPath = (a, b) =>
+      `${String(a).replace(/\/+$/, "")}/${String(b).replace(/^\/+/, "")}`;
+
     pages.forEach((page) => {
       if (page.board_no) return;
 
       const dirname = page.dirname || baseDir;
-      const filename = page.filename;
+      const filename = page.filename; // 파일명(stem)
       const title = page.title || "";
+      const children = Array.isArray(page.pages) ? page.pages : null;
 
-      const fullTitle = [...parentTitles, title].join(" - ");
+      const fullTitle = [...parentTitles, title].filter(Boolean).join(" - ");
 
-      if (filename && dirname) {
+      if (filename && dirname && (!children || children.length === 0)) {
         result.push({
-          path: `${dirname}/${filename}.php`,
+          path: joinPath(dirname, `${filename}.php`),
           title: fullTitle,
         });
       }
 
-      if (Array.isArray(page.pages)) {
-        this.extractPaths(page.pages, dirname, result, [
-          ...parentTitles,
-          title,
-        ]);
+      if (children) {
+        this.extractPaths(children, dirname, result, [...parentTitles, title]);
       }
     });
   }

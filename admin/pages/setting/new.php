@@ -3,7 +3,7 @@ include_once "../../../inc/lib/base.class.php";
 
 $pageName = "외부 태그 ";
 $depthnum = 10;
-
+$pagenum = 2;
 
 try {
     $db = DB::getInstance(); 
